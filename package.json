@@ -1,0 +1,20 @@
+{
+  "name": "facial-angle-and-expression-capture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rukshannet/facial-angle-and-expression-capture.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rukshannet/facial-angle-and-expression-capture/issues"
+  },
+  "homepage": "https://github.com/rukshannet/facial-angle-and-expression-capture#readme"
+}

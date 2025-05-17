@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Face Pose Classifier</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .card-content {
+      aspect-ratio: 3 / 4;
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Hero Section -->
+  <section class="bg-blue-600 text-white py-12">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-bold">Face Pose Classifier</h1>
+      <p class="text-lg mt-2">Upload an image to classify the face pose</p>
+      <p class="text-lg mt-2">This is only a POC, if you have a requirement let me know.</p>
+    </div>
+  </section>
+
+  <!-- Main Section -->
+  <section class="py-10">
+    <div class="max-w-5xl mx-auto px-4 space-y-8">
+
+      <!-- Upload Box -->
+      <div class="bg-white rounded-xl shadow p-6">
+        <h3 class="text-xl font-semibold mb-4">Upload Image</h3>
+        <label class="flex flex-col items-center px-4 py-6 bg-white rounded-lg shadow-md tracking-wide border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M16.88 7.76L11 2v3.5a.5.5 0 01-1 0V2L4.12 7.76a.5.5 0 01-.7-.7l6.36-6.36a1.5 1.5 0 012.12 0l6.36 6.36a.5.5 0 01-.7.7z" />
+            <path d="M2 13a1 1 0 011-1h14a1 1 0 011 1v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
+          </svg>
+          <span class="mt-2 text-base leading-normal">Select an image</span>
+          <input type="file" id="imageUpload" accept="image/*" class="hidden">
+        </label>
+        <p id="fileName" class="text-sm mt-2 text-gray-600">No file selected</p>
+        <progress id="uploadProgress" class="w-full mt-4 hidden" value="0" max="100"></progress>
+      </div>
+
+      <!-- Image Preview -->
+      <div id="image-preview-area" class="bg-white rounded-xl shadow p-6 hidden">
+        <h3 class="text-xl font-semibold mb-4">Image Preview</h3>
+        <img id="uploadedImage" src="#" alt="Uploaded Image" class="rounded border max-w-full h-auto">
+        <p id="backend-response" class="text-blue-600 mt-3 text-sm"></p>
+      </div>
+
+        <!-- Pose Categories -->
+        <div class="bg-white rounded-xl shadow p-6">
+        <h3 class="text-xl font-semibold mb-6">Pose Categories</h3>
+        <div id="pose-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <!-- Unassigned Category Box -->
+            <div id="pose-category-0" class="border rounded-xl p-4 shadow">
+                <p class="font-medium text-center mb-2">0. Unassigned</p>
+                <div class="card-content bg-gray-100 rounded"></div>
+            </div>
+            <!-- Cards will be injected here -->
+        </div>
+        </div>
+
+      <!-- Footer -->
+      <footer class="bg-gray-800 text-white py-4 mt-10">
+        <div class="container mx-auto text-center">
+          <p>&copy; 2023 Face Pose Classifier. All rights reserved.</p>
+        </div>
+      </footer>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+
+  <script>
+  const poses = [
+    "1. Full Face Frontal (Relaxed)",
+    "2. Sagittal Right (Relaxed)",
+    "3. Sagittal Left (Relaxed)",
+    "4. 45 Degrees Right (Relaxed)",
+    "5. 45 Degrees Left (Relaxed)",
+    "6. Full Face Frontal (Active)",
+    "7. Sagittal Right (Active)",
+    "8. Sagittal Left (Active)",
+    "9. 45 Degrees Right (Active)",
+    "10. 45 Degrees Left (Active)",
+    "11. Close-up Frontal Face (Relaxed)",
+    "12. 45 Degrees Right (Relaxed, Closeup)",
+    "13. 45 Degrees Left (Relaxed, Closeup)",
+  ];
+
+  const poseGrid = document.getElementById("pose-grid");
+
+  poses.forEach((title, index) => {
+    const poseId = `pose-category-${index + 1}`;
+    const card = document.createElement("div");
+    card.className = "border rounded-xl p-4 shadow";
+    card.id = poseId;
+    card.innerHTML = `
+      <p class="font-medium text-center mb-2">${title}</p>
+      <div class="card-content bg-gray-100 rounded"></div>
+    `;
+    poseGrid.appendChild(card);
+  });
+</script>
+
+
+</body>
+</html>
